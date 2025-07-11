@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class DataRequest extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'requester_name',    // <-- PASTIKAN INI ADA
+        'requester_email',   // <-- PASTIKAN INI ADA
+        'requester_phone',   // <-- PASTIKAN INI ADA
+        'admin_id',
+        'title',
+        'description',
+        'purpose',
+        'needed_date',
+        'attachment_path',
+        'status',
+    ];
+
+    protected $casts = [
+        'needed_date' => 'date',
+    ];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+}
