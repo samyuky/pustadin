@@ -1,27 +1,24 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-class FeederSyncRequest extends Model
-{
-    use HasFactory;
-
-    protected $fillable = [
-        'requester_name',    // Ditambahkan/disesuaikan
-        'requester_email',   // Ditambahkan/disesuaikan
-        'request_type',      // Ditambahkan/disesuaikan
-        'description',
-        'requester_phone',   // Ditambahkan/disesuaikan
-        'status',
-        'admin_id',          // Ditambahkan/disesuaikan
-    ];
-
-    // Jika Anda memiliki relasi dengan model Admin
-    public function admin()
+    class FeederSyncRequest extends Model
     {
-        return $this->belongsTo(Admin::class);
+        use HasFactory;
+
+        protected $fillable = [
+            'subject',
+            'description',
+            'requester_name',
+            'requester_email',
+            'request_type', // Tambahkan ini
+            'status',
+            'resolution_notes',
+            'admin_id',
+            'resolved_at',
+        ];
     }
-}
+    

@@ -104,6 +104,19 @@
                     <label for="email" class="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Email Anda:</label>
                     <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 bg-gray-50 dark:bg-dark-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" placeholder="Masukkan email Anda" required>
                 </div>
+
+                <!-- WhatsApp Number Input (REQUIRED) -->
+                <div>
+                    <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp Pribadi:</label>
+                    <input type="text" id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number') }}" required
+                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200"
+                           placeholder="Contoh: 6281234567890">
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pastikan nomor aktif dan diawali dengan kode negara (misal: 62 untuk Indonesia).</p>
+                    @error('whatsapp_number')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                
                 <div>
                     <label for="request_type" class="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2">Jenis Permintaan Sinkronisasi:</label>
                     <select id="request_type" name="request_type" class="form-select w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 bg-gray-50 dark:bg-dark-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" required>

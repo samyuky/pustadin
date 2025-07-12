@@ -260,288 +260,293 @@
             </div>
         </div>
     </section>
-
-    <!-- Section for Data Requests -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
-            <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
-                <i class="fas fa-database mr-3"></i> Permintaan Data Terbaru
-            </h2>
-            @if($latestDataRequests->isEmpty())
-                <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan data terbaru saat ini.</p>
-            @else
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-                        <thead class="bg-gray-50 dark:bg-dark-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
-                            @foreach($latestDataRequests as $request)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $request->subject }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @php
-                                            $statusClass = '';
-                                            switch ($request->status) {
-                                                case 'pending':
-                                                    $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
-                                                    break;
-                                                case 'approved':
-                                                    $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
-                                                    break;
-                                                case 'rejected':
-                                                    $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
-                                                    break;
-                                                case 'completed':
-                                                    $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
-                                                    break;
-                                            }
-                                        @endphp
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                            {{ ucfirst(str_replace('_', ' ', $request->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+    
+            <!-- Section for Data Requests -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
+                        <i class="fas fa-database mr-3"></i> Permintaan Data Terbaru
+                    </h2>
+                    @if($latestDataRequests->isEmpty())
+                        <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan data terbaru saat ini.</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+                                <thead class="bg-gray-50 dark:bg-dark-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Judul</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
+                                    @foreach($latestDataRequests as $request)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                                                {{ $request->title }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $statusClass = '';
+                                                    switch ($request->status) {
+                                                        case 'pending':
+                                                            $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
+                                                            break;
+                                                        case 'approved':
+                                                            $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
+                                                            break;
+                                                        case 'rejected':
+                                                            $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
+                                                            break;
+                                                        case 'completed':
+                                                            $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
+                                                            break;
+                                                        default:
+                                                            $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $request->status)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
+            </div>
 
-    <!-- Section for Error Reports -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
-            <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
-                <i class="fas fa-bug mr-3"></i> Laporan Error Terbaru
-            </h2>
-            @if($latestErrorReports->isEmpty())
-                <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada laporan error terbaru saat ini.</p>
-            @else
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-                        <thead class="bg-gray-50 dark:bg-dark-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Dilaporkan Pada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
-                            @foreach($latestErrorReports as $report)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $report->subject }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @php
-                                            $statusClass = '';
-                                            switch ($report->status) {
-                                                case 'new':
-                                                    $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
-                                                    break;
-                                                case 'investigating':
-                                                    $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
-                                                    break;
-                                                case 'resolved':
-                                                    $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
-                                                    break;
-                                            }
-                                        @endphp
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                            {{ ucfirst(str_replace('_', ' ', $report->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $report->created_at->format('d M Y H:i') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <!-- Section for Error Reports -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
+                        <i class="fas fa-bug mr-3"></i> Laporan Error Terbaru
+                    </h2>
+                    @if($latestErrorReports->isEmpty())
+                        <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada laporan error terbaru saat ini.</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+                                <thead class="bg-gray-50 dark:bg-dark-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Dilaporkan Pada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
+                                    @foreach($latestErrorReports as $report)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                                                {{ $report->title }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $statusClass = '';
+                                                    switch ($report->status) {
+                                                        case 'new':
+                                                            $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
+                                                            break;
+                                                        case 'investigating':
+                                                            $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
+                                                            break;
+                                                        case 'resolved':
+                                                            $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
+                                                            break;
+                                                        default:
+                                                            $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $report->status)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $report->created_at->format('d M Y H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
+            </div>
 
-    <!-- Section for Complaints -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
-            <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
-                <i class="fas fa-exclamation-triangle mr-3"></i> Keluhan Terbaru
-            </h2>
-            @if($latestComplaints->isEmpty())
-                <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada keluhan terbaru saat ini.</p>
-            @else
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-                        <thead class="bg-gray-50 dark:bg-dark-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Pelapor</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
-                            @foreach($latestComplaints as $complaint)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $complaint->subject }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $complaint->complainant_name ?? 'Anonim' }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @php
-                                            $statusClass = '';
-                                            switch ($complaint->status) {
-                                                case 'pending':
-                                                    $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
-                                                    break;
-                                                case 'approved':
-                                                    $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
-                                                    break;
-                                                case 'rejected':
-                                                    $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
-                                                    break;
-                                                case 'completed':
-                                                    $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
-                                                    break;
-                                            }
-                                        @endphp
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                            {{ ucfirst(str_replace('_', ' ', $complaint->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $complaint->created_at->format('d M Y H:i') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <!-- Section for Complaints -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Keluhan Terbaru
+                    </h2>
+                    @if($latestComplaints->isEmpty())
+                        <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada keluhan terbaru saat ini.</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+                                <thead class="bg-gray-50 dark:bg-dark-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Pelapor</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
+                                    @foreach($latestComplaints as $complaint)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $complaint->subject }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $complaint->complainant_name ?? 'Anonim' }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $statusClass = '';
+                                                    switch ($complaint->status) {
+                                                        case 'pending':
+                                                            $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
+                                                            break;
+                                                        case 'approved':
+                                                            $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
+                                                            break;
+                                                        case 'rejected':
+                                                            $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
+                                                            break;
+                                                        case 'completed':
+                                                            $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
+                                                            break;
+                                                        default:
+                                                            $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $complaint->status)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $complaint->created_at->format('d M Y H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
+            </div>
 
-    <!-- Section for SIMAK Feature Requests -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
-            <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
-                <i class="fas fa-lightbulb mr-3"></i> Permintaan Fitur SIMAK Terbaru
-            </h2>
-            @if($latestSimakFeatureRequests->isEmpty())
-                <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan fitur SIMAK terbaru saat ini.</p>
-            @else
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-                        <thead class="bg-gray-50 dark:bg-dark-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
-                            @foreach($latestSimakFeatureRequests as $request)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $request->subject }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @php
-                                            $statusClass = '';
-                                            switch ($request->status) {
-                                                case 'new':
-                                                    $statusClass = 'bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100';
-                                                    break;
-                                                case 'in_progress':
-                                                    $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
-                                                    break;
-                                                case 'completed':
-                                                    $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
-                                                    break;
-                                            }
-                                        @endphp
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                            {{ ucfirst(str_replace('_', ' ', $request->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <!-- Section for SIMAK Feature Requests -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
+                        <i class="fas fa-lightbulb mr-3"></i> Permintaan Fitur SIMAK Terbaru
+                    </h2>
+                    @if($latestSimakFeatureRequests->isEmpty())
+                        <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan fitur SIMAK terbaru saat ini.</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+                                <thead class="bg-gray-50 dark:bg-dark-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
+                                    @foreach($latestSimakFeatureRequests as $request)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $request->subject }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $statusClass = '';
+                                                    switch ($request->status) {
+                                                        case 'new':
+                                                            $statusClass = 'bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100';
+                                                            break;
+                                                        case 'in_progress':
+                                                            $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
+                                                            break;
+                                                        case 'completed':
+                                                            $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
+                                                            break;
+                                                        default:
+                                                            $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $request->status)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
+            </div>
 
-    <!-- Section for Feeder Sync Requests -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
-            <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
-                <i class="fas fa-sync-alt mr-3"></i> Permintaan Sinkronisasi Feeder Terbaru
-            </h2>
-            @if($latestFeederSyncRequests->isEmpty())
-                <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan sinkronisasi feeder terbaru saat ini.</p>
-            @else
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-                        <thead class="bg-gray-50 dark:bg-dark-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
-                            @foreach($latestFeederSyncRequests as $request)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $request->subject }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @php
-                                            $statusClass = '';
-                                            switch ($request->status) {
-                                                case 'pending':
-                                                    $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
-                                                    break;
-                                                case 'processing':
-                                                    $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
-                                                    break;
-                                                case 'completed':
-                                                    $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
-                                                    break;
-                                                case 'failed':
-                                                    $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
-                                                    break;
-                                            }
-                                        @endphp
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                            {{ ucfirst(str_replace('_', ' ', $request->status)) }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <!-- Section for Feeder Sync Requests -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl p-8 mb-10">
+                    <h2 class="text-2xl font-bold text-center text-primary dark:text-white mb-6 flex items-center justify-center">
+                        <i class="fas fa-sync-alt mr-3"></i> Permintaan Sinkronisasi Feeder Terbaru
+                    </h2>
+                    @if($latestFeederSyncRequests->isEmpty())
+                        <p class="text-center text-gray-600 dark:text-gray-400">Tidak ada permintaan sinkronisasi feeder terbaru saat ini.</p>
+                    @else
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+                                <thead class="bg-gray-50 dark:bg-dark-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Subjek</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diajukan Pada</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-dark-800 divide-y divide-gray-200 dark:divide-dark-700">
+                                    @foreach($latestFeederSyncRequests as $request)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">{{ $request->subject }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                    $statusClass = '';
+                                                    switch ($request->status) {
+                                                        case 'pending':
+                                                            $statusClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100';
+                                                            break;
+                                                        case 'processing':
+                                                            $statusClass = 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100';
+                                                            break;
+                                                        case 'completed':
+                                                            $statusClass = 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100';
+                                                            break;
+                                                        case 'failed':
+                                                            $statusClass = 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100';
+                                                            break;
+                                                        default:
+                                                            $statusClass = 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $request->status)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $request->created_at->format('d M Y H:i') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
+            </div>
 
+<!-- FAQ Section -->
     <section id="faq" class="py-16 bg-light-200 dark:bg-dark-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -617,13 +622,13 @@
                         Pusat Data dan Informasi Universitas Garut
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
+                        <a href="https://www.facebook.com/pusdatinkemdikdasmen/" class="text-gray-400 hover:text-white">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
+                        <a href="https://www.instagram.com/pusdatin_kemendikdasmen/?hl=en" class="text-gray-400 hover:text-white">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
+                        <a href="https://www.youtube.com/@Pusdatin.Kemendikdasmen" class="text-gray-400 hover:text-white">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>

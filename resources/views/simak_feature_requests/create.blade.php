@@ -97,6 +97,18 @@
                                   class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">{{ old('description') }}</textarea>
                     </div>
 
+                    <!-- WhatsApp Number Input (REQUIRED) -->
+                <div>
+                    <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp Pribadi:</label>
+                    <input type="text" id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number') }}" required
+                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200"
+                           placeholder="Contoh: 6281234567890">
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pastikan nomor aktif dan diawali dengan kode negara (misal: 62 untuk Indonesia).</p>
+                    @error('whatsapp_number')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
                     <div>
                         <label for="requester_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Peminta:</label>
                         <input type="text" id="requester_name" name="requester_name" value="{{ old('requester_name') }}" required
@@ -106,12 +118,6 @@
                     <div>
                         <label for="requester_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Peminta:</label>
                         <input type="email" id="requester_email" name="requester_email" value="{{ old('requester_email') }}" required
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
-                    </div>
-
-                    <div>
-                        <label for="requester_phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor Telepon Peminta (Opsional):</label>
-                        <input type="text" id="requester_phone" name="requester_phone" value="{{ old('requester_phone') }}"
                                class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
                     </div>
 

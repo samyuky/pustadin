@@ -90,8 +90,6 @@
             <form action="{{ route('data_requests.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf <!-- CSRF token for security -->
 
-                <!-- Bagian dari resources/views/data_requests/create.blade.php -->
-<!-- ... -->
                 <!-- Requester Name Input -->
                 <div>
                     <label for="requester_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Lengkap:</label>
@@ -112,16 +110,17 @@
                     @enderror
                 </div>
 
-                <!-- Requester Phone Input (Optional) -->
+                <!-- WhatsApp Number Input (REQUIRED) -->
                 <div>
-                    <label for="requester_phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor Telepon (Opsional):</label>
-                    <input type="text" id="requester_phone" name="requester_phone" value="{{ old('requester_phone') }}"
-                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
-                    @error('requester_phone')
+                    <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp Pribadi:</label>
+                    <input type="text" id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number') }}" required
+                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200"
+                           placeholder="Contoh: 6281234567890">
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pastikan nomor aktif dan diawali dengan kode negara (misal: 62 untuk Indonesia).</p>
+                    @error('whatsapp_number')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-<!-- ... -->
 
                 <!-- Title Input -->
                 <div>
@@ -137,7 +136,7 @@
                 <div>
                     <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Deskripsi Data:</label>
                     <textarea id="description" name="description" rows="4" required
-                              class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">{{ old('description') }}</textarea>
+                                 class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">{{ old('description') }}</textarea>
                     @error('description')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
@@ -201,7 +200,7 @@
         // Initialize Flatpickr for date input
         flatpickr(".flatpickr", {
             dateFormat: "Y-m-d", // Date format YYYY-MM-DD
-            minDate: "today",     // Only allow today or future dates
+            minDate: "today",    // Only allow today or future dates
         });
 
         // Theme toggle functionality
@@ -228,6 +227,4 @@
         setInitialTheme();
     </script>
 </body>
-
-
 </html>
