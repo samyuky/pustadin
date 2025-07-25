@@ -14,7 +14,7 @@
             'description',
             'requester_name',
             'requester_email',
-            'request_type', // Tambahkan ini
+            'request_type',
             'status',
             'resolution_notes',
             'admin_id',

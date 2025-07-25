@@ -115,3 +115,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 })->name('admin.services.history');
 
 Route::get('/admin/services/history', [ServiceHistoryController::class, 'index'])->name('admin.services.history');
+
+Route::get('/test-email', function() {
+    try {
+        Mail::raw('Ini adalah email test dari Laravel', function($message) {
+            $message->to('emailAnda@gmail.com')
+                    ->subject('Test Email dari Laravel');
+        });
+        return 'Email berhasil dikirim!';
+    } catch (\Exception $e) {
+        return 'Gagal mengirim email: ' . $e->getMessage();
+    }
+});

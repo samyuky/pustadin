@@ -81,6 +81,18 @@
                     @csrf
 
                     <div>
+                        <label for="reporter_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Pelapor:</label>
+                        <input type="text" id="reporter_name" name="reporter_name" value="{{ old('reporter_name') }}"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
+                    </div>
+
+                    <div>
+                        <label for="reporter_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Pelapor:</label>
+                        <input type="reporter_email" id="reporter_email" name="reporter_email" value="{{ old('reporter_email') }}"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
+                    </div>
+
+                    <div>
                         <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Judul Laporan Error:</label>
                         <input type="text" id="title" name="title" value="{{ old('title') }}" required
                                class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
@@ -92,29 +104,15 @@
                                   class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">{{ old('description') }}</textarea>
                     </div>
 
-                    <!-- WhatsApp Number Input (REQUIRED) -->
+                <!-- Attachment Upload Input -->
                 <div>
-                    <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp Pribadi:</label>
-                    <input type="text" id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number') }}" required
-                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200"
-                           placeholder="Contoh: 6281234567890">
-                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pastikan nomor aktif dan diawali dengan kode negara (misal: 62 untuk Indonesia).</p>
-                    @error('whatsapp_number')
+                    <label for="attachment_path" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bukti Error (PDF/DOC/DOCX/ZIP, maks 2MB):</label>
+                    <input type="file" id="attachment_path" name="attachment_path" accept=".pdf,.doc,.docx,.zip"
+                           class="w-full text-gray-700 dark:text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-indigo-600">
+                    @error('attachment_path')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-
-                    <div>
-                        <label for="reported_by" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Pelapor (Opsional):</label>
-                        <input type="text" id="reported_by" name="reported_by" value="{{ old('reported_by') }}"
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Pelapor (Opsional):</label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}"
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
-                    </div>
 
                     <div class="flex justify-end space-x-4 pt-4">
                         <a href="{{ route('home') }}" class="px-6 py-2 border border-gray-300 dark:border-dark-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors">

@@ -79,6 +79,18 @@
 
                 <form action="{{ route('complaints.store') }}" method="POST" class="space-y-5">
                     @csrf
+                    
+                    <div>
+                        <label for="complainant_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Pelapor:</label>
+                        <input type="text" id="complainant_name" name="complainant_name" value="{{ old('complainant_name') }}"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
+                    </div>
+
+                    <div>
+                        <label for="complainant_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Pelapor:</label>
+                        <input type="email" id="complainant_email" name="complainant_email" value="{{ old('complainant_email') }}"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
+                    </div>
 
                     <div>
                         <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subjek Keluhan:</label>
@@ -90,30 +102,6 @@
                         <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Pesan Keluhan Detail:</label>
                         <textarea id="message" name="message" rows="6" required
                                   class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">{{ old('message') }}</textarea>
-                    </div>
-
-                    <!-- WhatsApp Number Input (REQUIRED) -->
-                <div>
-                    <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp Pribadi:</label>
-                    <input type="text" id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number') }}" required
-                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200"
-                           placeholder="Contoh: 6281234567890">
-                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Pastikan nomor aktif dan diawali dengan kode negara (misal: 62 untuk Indonesia).</p>
-                    @error('whatsapp_number')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                    <div>
-                        <label for="complainant_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Pelapor (Opsional):</label>
-                        <input type="text" id="complainant_name" name="complainant_name" value="{{ old('complainant_name') }}"
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
-                    </div>
-
-                    <div>
-                        <label for="complainant_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Pelapor (Opsional):</label>
-                        <input type="email" id="complainant_email" name="complainant_email" value="{{ old('complainant_email') }}"
-                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-md focus:ring-primary focus:border-primary dark:bg-dark-700 dark:text-gray-200">
                     </div>
 
                     <div class="flex justify-end space-x-4 pt-4">

@@ -6,7 +6,7 @@ use App\Models\DataRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log; // Untuk logging pesan WA (opsional)
+use Illuminate\Support\Facades\Log; 
 
 class DataRequestController extends Controller
 {
@@ -25,7 +25,6 @@ class DataRequestController extends Controller
         $validatedData = $request->validate([
             'requester_name' => 'required|string|max:255',
             'requester_email' => 'required|email|max:255',
-            'requester_phone' => 'nullable|string|max:20',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'purpose' => 'required|string|max:255',
@@ -70,12 +69,10 @@ class DataRequestController extends Controller
         $request->validate([
             'status' => 'required|in:pending,approved,rejected,completed',
             'delivered_data_file' => 'nullable|file|max:10240', // Maks 10MB untuk file yang dikirim
-            // Anda bisa tambahkan validasi untuk jenis file yang dikirim jika perlu
         ]);
 
-        $deliveredDataPath = $dataRequest->delivered_data_path; // Ambil path lama jika ada
+        $deliveredDataPath = $dataRequest->delivered_data_path;
 
-        // Jika ada file baru yang diunggah untuk delivered_data_file
         if ($request->hasFile('delivered_data_file')) {
             // Hapus file lama jika ada
             if ($deliveredDataPath && Storage::disk('public')->exists($deliveredDataPath)) {

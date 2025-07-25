@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FeederSyncRequest; // Pastikan Anda memiliki model FeederSyncRequest
+use App\Models\FeederSyncRequest; 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Untuk mendapatkan ID admin yang login
+use Illuminate\Support\Facades\Auth;
 
 class FeederSyncRequestController extends Controller
 {
@@ -18,16 +18,16 @@ class FeederSyncRequestController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'requester_name' => 'required|string|max:255',
+            'requester_email' => 'required|email|max:255',
             'request_type' => 'required|string|max:255',
             'description' => 'required|string',
             'requester_phone' => 'nullable|string|max:20', // Tambahkan jika ada di form
         ]);
 
         FeederSyncRequest::create([
-            'requester_name' => $validatedData['name'],
-            'requester_email' => $validatedData['email'],
+            'requester_name' => $validatedData['requester_name'],
+            'requester_email' => $validatedData['requester_email'],
             'request_type' => $validatedData['request_type'],
             'description' => $validatedData['description'],
             'requester_phone' => $validatedData['requester_phone'] ?? null, // Sesuaikan jika ada di form

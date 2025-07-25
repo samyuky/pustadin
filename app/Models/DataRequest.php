@@ -10,10 +10,9 @@ class DataRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'requester_name',    // <-- PASTIKAN INI ADA
-        'requester_email',   // <-- PASTIKAN INI ADA
-        'requester_phone',   // <-- PASTIKAN INI ADA
-        'admin_id',
+        'requester_name',    
+        'requester_email',   
+        'requester_phone', 
         'title',
         'description',
         'purpose',

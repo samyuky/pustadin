@@ -56,6 +56,18 @@
         .dark ::-webkit-scrollbar-thumb:hover {
             background: #777;
         }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body class="bg-light-100 dark:bg-dark-900 text-gray-800 dark:text-gray-200 min-h-screen transition-colors duration-300 flex flex-col">
@@ -102,6 +114,26 @@
             </div>
         </div>
     </header>
+
+    @if(session('email_sent'))
+        <div class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center animate-fade-in">
+            <i class="fas fa-check-circle mr-2"></i>
+            {{ session('email_sent') }}
+            <button onclick="this.parentElement.remove()" class="ml-4">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    @endif
+
+    @if(session('warning'))
+        <div class="fixed bottom-4 right-4 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center animate-fade-in">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            {{ session('warning') }}
+            <button onclick="this.parentElement.remove()" class="ml-4">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    @endif
 
     <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Detail Permintaan Data</h1>

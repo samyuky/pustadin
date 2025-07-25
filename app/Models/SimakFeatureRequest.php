@@ -14,7 +14,7 @@
             'description',
             'requester_name',
             'requester_email',
-            'requester_phone',
+            'letter_file',
             'letter_path',
             'status',
             'admin_notes',

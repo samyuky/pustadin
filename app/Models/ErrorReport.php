@@ -16,6 +16,7 @@ class ErrorReport extends Model
         'title',
         'description',
         'related_system',
+        'attachment_path',
         'screenshot_path',
         'status',
         'admin_id', // <-- Tambahkan ini

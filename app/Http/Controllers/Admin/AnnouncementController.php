@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
-use App\Models\DataRequest; // Import model DataRequest - KESALAHAN INI DIPERBAIKI
-use App\Models\ErrorReport; // Import model ErrorReport
-use App\Models\Complaint;   // Import model Complaint
-use App\Models\SimakFeatureRequest; // Import model SimakFeatureRequest - KESALAHAN INI DIPERBAIKI
-use App\Models\FeederSyncRequest; // Import model FeederSyncRequest
+use App\Models\DataRequest; 
+use App\Models\ErrorReport; 
+use App\Models\Complaint;   
+use App\Models\SimakFeatureRequest; 
+use App\Models\FeederSyncRequest; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -20,13 +20,7 @@ class AnnouncementController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
-    /**
-     * Menampilkan daftar semua pengumuman dan berbagai jenis permintaan.
-     * Tidak menampilkan item dengan status 'pending' atau 'new' untuk permintaan data, laporan error,
-     * permintaan fitur SIMAK, dan permintaan sinkronisasi feeder.
-     * Untuk keluhan, hanya menampilkan yang sudah 'approved', 'rejected', atau 'completed'.
-     */
+    
     public function index()
     {
         // Mengambil data pengumuman

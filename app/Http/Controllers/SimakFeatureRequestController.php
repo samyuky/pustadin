@@ -26,7 +26,6 @@
                 'description' => 'required|string',
                 'requester_name' => 'required|string|max:255',
                 'requester_email' => 'required|email|max:255',
-                'requester_phone' => 'nullable|string|max:20',
                 'letter_file' => 'nullable|file|mimes:pdf,doc,docx|max:2048', // Surat dari dekan/ketua
             ]);
 
@@ -40,7 +39,6 @@
                 'description' => $validatedData['description'],
                 'requester_name' => $validatedData['requester_name'],
                 'requester_email' => $validatedData['requester_email'],
-                'requester_phone' => $validatedData['requester_phone'],
                 'letter_path' => $letterPath,
                 'status' => 'pending', // Status awal saat diajukan
                 'admin_notes' => null,

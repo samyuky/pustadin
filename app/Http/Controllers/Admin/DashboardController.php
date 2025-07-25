@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DataRequest; // Pastikan model ini ada
-use App\Models\ErrorReport; // Pastikan model ini ada
-use App\Models\Complaint;   // Pastikan model ini ada
-use App\Models\SimakFeatureRequest; // Pastikan model ini ada
-use App\Models\FeederSyncRequest; // Pastikan model ini ada
-use App\Models\Announcement; // Pastikan ini adalah model yang benar, bukan BulletinBoardAnnouncement
+use App\Models\DataRequest; 
+use App\Models\ErrorReport; 
+use App\Models\Complaint;   
+use App\Models\SimakFeatureRequest; 
+use App\Models\FeederSyncRequest; 
+use App\Models\Announcement; 
 
 class DashboardController extends Controller
 {

@@ -8,7 +8,7 @@ use App\Models\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon; // Pastikan Carbon diimport
+use Illuminate\Support\Carbon; 
 
 class BulletinBoardAnnouncementController extends Controller
 {
@@ -47,7 +47,7 @@ class BulletinBoardAnnouncementController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'published_at' => 'nullable|date', // Tetap nullable di validasi
+            'published_at' => 'nullable|date',
         ]);
 
         // Logika untuk mengatur published_at

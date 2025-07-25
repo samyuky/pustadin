@@ -10,11 +10,16 @@
         {
             Schema::create('error_reports', function (Blueprint $table) {
                 $table->id();
+                $table->string('reporter_name');
+                $table->string('reporter_email');
+                $table->string('reporter_phone')->nullable();
                 $table->string('title');
                 $table->text('description');
-                $table->string('reported_by')->nullable(); // Nama pelapor (opsional jika tidak ada user login)
-                $table->string('email')->nullable(); // Email pelapor
-                $table->enum('status', ['open', 'in_progress', 'closed'])->default('open');
+                $table->string('related_system')->nullable();
+                $table->string('attachment_path')->nullable();
+                $table->string('screenshot_path')->nullable();
+                $table->string('status')->default('pending');
+                $table->foreignId('admin_id')->nullable()->constrained()->nullOnDelete();
                 $table->timestamps();
             });
         }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ErrorReport; // Pastikan Anda memiliki model ErrorReport
+use App\Models\ErrorReport; 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Untuk mendapatkan ID admin yang login
+use Illuminate\Support\Facades\Auth; 
+use App\Mail\ErrorReportStatusUpdated;
+use Illuminate\Support\Facades\Mail;
 
 class ErrorReportController extends Controller
 {
@@ -39,20 +41,47 @@ class ErrorReportController extends Controller
      * @param  \App\Models\ErrorReport  $errorReport
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateStatus(Request $request, ErrorReport $errorReport)
+    public function updateStatus(Request $request, $id)
     {
-        $request->validate([
-            'status' => 'required|in:pending,approved,rejected,completed',
-        ]);
+        $errorReport = ErrorReport::findOrFail($id);
+        $newStatus = $request->status;
+        
+        try {
+            Mail::to($errorReport->reporter_email)
+                ->send(new ErrorReportStatusUpdated($errorReport, $newStatus)); // Kirim kedua parameter
+            
+            return back()->with([
+                'success' => 'Status berhasil diperbarui',
+                'email_sent' => 'Email terkirim ke ' . $errorReport->reporter_email
+            ]);
+            
+        } catch (\Exception $e) {
+            return back()->with([
+                'success' => 'Status berhasil diperbarui',
+                'warning' => 'Email gagal dikirim: ' . $e->getMessage()
+            ]);
+        }
 
-        $errorReport->status = $request->status;
-        $errorReport->admin_id = Auth::guard('admin')->id(); // Catat admin yang mengubah status
-        $errorReport->save();
-
-        return redirect()->route('admin.error-reports.show', $errorReport->id)
-                         ->with('success', 'Status laporan error berhasil diperbarui.');
+                try {
+            \Log::info("Mengirim email ke: " . $errorReport->reporter_email);
+            Mail::to($errorReport->reporter_email)
+                ->send(new ErrorReportStatusUpdated($errorReport, $newStatus));
+            \Log::info("Email berhasil dikirim");
+            // ...
+        } catch (\Exception $e) {
+            \Log::error("Error mengirim email: " . $e->getMessage());
+            // ...
+        }
     }
 
+    public function build()
+    {
+        return $this->subject('Status Laporan Error Diperbarui')
+                ->view('emails.error_report_status_updated', [
+                    'status' => $this->status,
+                    'errorReport' => $this->errorReport
+                ]);
+    }
     /**
      * Remove the specified error report from storage.
      *

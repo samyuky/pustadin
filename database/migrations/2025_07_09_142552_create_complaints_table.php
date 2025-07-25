@@ -12,15 +12,32 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('complaints', function (Blueprint $table) {
+            $table->foreignId('admin_id')
+                  ->nullable()
+                  ->constrained('admins')
+                  ->nullOnDelete();
             $table->id();
             $table->string('subject');
             $table->text('message');
-            $table->string('complainant_name')->nullable();
-            $table->string('complainant_email')->nullable();
-            // PASTIKAN BARIS INI ADA DAN BENAR
-            $table->enum('status', ['new', 'investigating', 'resolved'])->default('new');
+            $table->string('complainant_name');
+            $table->string('complainant_email');
+            $table->string('status')->default('pending');
+            $table->text('resolution_notes')->nullable();
+            $table->timestamp('resolved_at')->nullable();
             $table->timestamps();
         });
+
+        DB::table('complaints')
+            ->where('id', 2)
+            ->update([
+                'status' => 'completed',
+                'updated_at' => now()
+            ]);
+
+        Complaint::find(2)->update([
+            'status' => 'completed',
+            'admin_id' => 1
+        ]);
     }
 
     /**

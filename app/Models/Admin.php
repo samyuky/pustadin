@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable; // Pastikan ini diimpor
+use Illuminate\Foundation\Auth\User as Authenticatable; 
 use Illuminate\Notifications\Notifiable;
 
-class Admin extends Authenticatable // Pastikan ini mengimplementasikan Authenticatable
+class Admin extends Authenticatable 
 {
     use HasFactory, Notifiable;
 
-    protected $guard = 'admin'; // Pastikan guard ini diset ke 'admin'
+    protected $guard = 'admin'; 
 
     protected $fillable = [
         'name',
@@ -25,6 +25,6 @@ class Admin extends Authenticatable // Pastikan ini mengimplementasikan Authenti
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed', // Pastikan ini ada untuk meng-hash password secara otomatis saat diisi
+        'password' => 'hashed', 
     ];
 }

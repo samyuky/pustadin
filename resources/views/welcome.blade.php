@@ -254,7 +254,7 @@
                             3
                         </div>
                         <h3 class="font-bold text-lg mb-2">Notifikasi</h3>
-                        <p class="text-gray-600 dark:text-gray-400 max-w-xs">Anda akan menerima notifikasi setelah permintaan selesai.</p>
+                        <p class="text-gray-600 dark:text-gray-400 max-w-xs">Anda akan menerima notifikasi email setelah permintaan selesai.</p>
                     </div>
                 </div>
             </div>

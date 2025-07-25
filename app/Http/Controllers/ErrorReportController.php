@@ -23,8 +23,9 @@ class ErrorReportController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'reported_by' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
+            'reporter_name' => 'nullable|string|max:255',
+            'reporter_email' => 'nullable|email|max:255',
+            'attachment_path' => 'nullable|file|mimes:pdf,doc,docx,zip|max:2048',
         ]);
 
         // Tambahkan status secara eksplisit
